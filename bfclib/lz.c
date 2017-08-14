@@ -341,7 +341,6 @@ int LZ_CompressFast( unsigned char *in, unsigned char *out,
     {
         return 0;
     }
-				
 
     /* Assign arrays to the working area */
     lastindex = work;
