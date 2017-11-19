@@ -42,3 +42,4 @@ All rights reserved
 
 * Marcus Geelnard [Basic Compression Library](http://bcl.comli.eu/)
 * nutsey [GoPrawn](https://www.goprawn.com/member/3-nutsey)
+* hugoboss00 [GoPrawn] (https://www.goprawn.com/member/1200-hugoboss00)

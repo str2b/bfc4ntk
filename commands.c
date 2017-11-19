@@ -150,7 +150,7 @@ int compress_pc_cmd(FILE *infile, FILE *outfile, int optional, int optional_val)
 	fseek(infile, 0, SEEK_SET);
 	fread(cpy, sizeof(char), offset, infile);
 	fwrite(cpy, offset, 1, outfile);
-	write_bcl_header(outfile, offset, BCL_MAGIC, LZ_ALGO, insize - offset, outsize);
+	write_bcl_header(outfile, offset, BCL_MAGIC, LZ_ALGO, insize, outsize);
 	fwrite(outbuf, outsize, 1, outfile);
 	
 	/* Fix header */
@@ -250,7 +250,7 @@ int decompress_pc_cmd(FILE *infile, FILE *outfile, int optional, int optional_va
 		return -1;
 	}
 	fwrite(cpy, offset, 1, outfile);
-	fwrite(outbuf, outsize, 1, outfile);
+	fwrite(outbuf, outsize - offset, 1, outfile);
 	
 	/* Fix raw header*/
 	patch_ntk_header(outfile, outsize + offset, 0);
