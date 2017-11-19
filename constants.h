@@ -3,7 +3,7 @@
 
 /* Application constants */
 #define NAME "bfc4ntk"
-#define VERSION "3.1"
+#define VERSION "3.2"
 #define BUILD_DATE __DATE__
 #define AUTHOR "Tobi@s"
 #define RELEASED_FOR "  http://dc.p-mc.eu/\n  http://www.goprawn.com/\n  http://dashcamtalk.com/"
