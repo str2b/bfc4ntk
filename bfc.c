@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 			ret = compress_pc_cmd(infile, outfile, optional, optional_val); 
 			break;
 		case DECOMPRESS_FC_CMD: 
-			printf("Decompressing '%s' to '%s' (FullComp)...\n", inname, outname);
+			printf("Decompressing '%s'@%08x to '%s' (FullComp)...\n", inname, optional ? optional_val : 0, outname);
 			ret = decompress_fc_cmd(infile, outfile, optional, optional_val); 
 			break;
 		case DECOMPRESS_PC_CMD: 
@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
 			break;
 		default: ret = help_cmd(this);
 	}
-	
+	printf("Done.\n");
 	fclose(infile);
 	fclose(outfile);
 	return ret;

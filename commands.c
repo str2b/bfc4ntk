@@ -184,24 +184,27 @@ unsigned char *uncompress_file_at(FILE *infile, int insize, long offset, int *ou
 		printf("Error: Unsupported algorithm: %04x\n", algo);
 		return 0;
 	}
+	
 	*outsize = read_dword(infile);
 	insize_stored = read_dword(infile);
+	
 	if((insize < insize_stored + HEADER_LEN)) {
-		printf("Error: File size is abnormal (is:%08x issh:%08x)\n", insize, insize_stored + HEADER_LEN);
+		printf("Error: File size is abnormal (filesize:%08x size_from_header:%08x)\n", insize, insize_stored + HEADER_LEN);
 		return 0;
 	}
 	
 	/* read file to buffer*/
-	if(!prepare_char_buf(&inbuf, insize))
+	if(!prepare_char_buf(&inbuf, insize_stored))
 		return 0;
-	fread(inbuf, insize, 1, infile);
+	
+	fread(inbuf, 1, insize_stored, infile);
 	
 	/* Allocate memory for output buffer */
 	if(!prepare_char_buf(&outbuf, *outsize))
 		return 0;
 	
 	/* uncompress via bfc lib */
-	LZ_Uncompress(inbuf, outbuf, insize);
+	LZ_Uncompress(inbuf, outbuf, insize_stored);
 	
 	free(inbuf);
 	return outbuf;
